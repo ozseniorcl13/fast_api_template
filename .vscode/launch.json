@@ -13,7 +13,9 @@
                 "src.main:api",
                 "--app-dir",
                 "${workspaceFolder}/src",
-                "--reload"
+                "--reload",
+                "--port",
+                "5000"
             ],
             "jinja": true,
             "justMyCode": true

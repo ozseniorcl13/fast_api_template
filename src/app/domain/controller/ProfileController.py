@@ -1,8 +1,13 @@
+from typing import List, Optional
 from fastapi_router_controller import Controller
-from fastapi import APIRouter, Body, Depends, HTTPException, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from fastapi.responses import JSONResponse
+from app.domain.dto import ResourceQuotaDTO
 from app.domain.dto.ProfileCreateDTO import ProfileCreateDTO
 from app.domain.dto.ProfileResponseDTO import ProfileResponseDTO
+from app.domain.model.Profile import Profile
+from app.domain.services.ProfileService import profileService
+from pydantic.fields import ModelField
 
 router = APIRouter(prefix='/profile')
 controller = Controller(router,openapi_tag={'name':'Profile'})
@@ -10,6 +15,9 @@ controller = Controller(router,openapi_tag={'name':'Profile'})
 @controller.use()
 @controller.resource()
 class ProfileController:
+
+    def __init__(self) -> None:
+        pass
 
     @router.get("/", tags=["Profile"], summary='List profiles from Kubeflow')
     def findAll():
@@ -38,11 +46,10 @@ class ProfileController:
         return
     
     @router.patch("/{id}",tags=["Profile"],
-                status_code=status.HTTP_204_NO_CONTENT, 
-                summary='Find and update a profile by ID', 
-                response_model=None)
-    async def findAndUpdateById(id: str, profile: ProfileCreateDTO):
-        print(f'Update: {id}')    
-        return
+                status_code=status.HTTP_200_OK,
+                summary='Find and update a profile by ID',        
+                response_model=List[Profile])
+    async def findAndUpdateById(id: str, profile: ProfileCreateDTO): 
+        return profileService.findAll()
         
     

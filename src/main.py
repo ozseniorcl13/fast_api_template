@@ -15,4 +15,4 @@ for controller in controllerLoader():
     api.include_router(controller.router)
 
 if __name__ == "__main__":
-    uvicorn.run("main:api", port=settings.PORT, log_level="info")
+    uvicorn.run("main:api", host='0.0.0.0', port=settings.PORT, log_level="info")
