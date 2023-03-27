@@ -15,7 +15,7 @@ class ResourceQuotaController:
                 tags=["ResourceQuota"], 
                 summary='Get ResourceQuota by ID from Kubeflow',
                 status_code=status.HTTP_200_OK,
-                response_model=List[ResourceQuotaDTO])
+                response_model=list[ResourceQuotaDTO])
     def findById(id: str):
         list: List = []
         list.append(ResourceQuotaDTO(name='role1'))
