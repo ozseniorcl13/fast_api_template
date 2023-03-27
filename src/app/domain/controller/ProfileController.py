@@ -19,9 +19,12 @@ class ProfileController:
     def __init__(self) -> None:
         pass
 
-    @router.get("/", tags=["Profile"], summary='List profiles from Kubeflow')
+    @router.get("/", 
+                tags=["Profile"], 
+                summary='List profiles from Kubeflow',
+                response_model=List[Profile])
     def findAll():
-        return ProfileResponseDTO(name='Charles')
+        return profileService.findAll()
 
     @router.post("/", tags=["Profile"], 
                  status_code=status.HTTP_201_CREATED, 
@@ -46,10 +49,11 @@ class ProfileController:
         return
     
     @router.patch("/{id}",tags=["Profile"],
-                status_code=status.HTTP_200_OK,
+                status_code=status.HTTP_204_NO_CONTENT,
                 summary='Find and update a profile by ID',        
-                response_model=List[Profile])
+                response_model=None)
     async def findAndUpdateById(id: str, profile: ProfileCreateDTO): 
-        return profileService.findAll()
+        profileService.findAndUpdate()
+        return 
         
     

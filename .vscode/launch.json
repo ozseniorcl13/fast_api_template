@@ -15,8 +15,14 @@
                 "${workspaceFolder}/src",
                 "--reload",
                 "--port",
-                "5000"
+                "5000",
+                "--log-level",
+                "info"
             ],
+            "env": {
+                "KUBE_CONFIG_DEFAULT_LOCATION": "~/.kube/config",
+                "KUBE_CONFIG_DEFAULT_CONTEXT": "minikube"
+            },
             "jinja": true,
             "justMyCode": true
         }

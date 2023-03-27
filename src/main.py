@@ -3,11 +3,18 @@ from fastapi_router_controller import ControllersTags
 from fastapi import FastAPI
 from app.config.Settings import settings
 from app.config.Utils import controllerLoader
+from app.infrastructure.services.K8sClient import client
 
 api = FastAPI(
     title="Application FastAPI",
     version="0.1.0",
-    openapi_tags=ControllersTags
+    openapi_tags=ControllersTags    
+)
+
+# Load K8sClient
+client.connect(
+    context=settings.KUBE_CONFIG_DEFAULT_CONTEXT,
+    pathFile=settings.KUBE_CONFIG_DEFAULT_LOCATION
 )
 
 # Register routes by Controller
