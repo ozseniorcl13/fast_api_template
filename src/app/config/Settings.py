@@ -8,5 +8,6 @@ class Settings(BaseSettings):
     PORT: int = int(os.environ.get('PORT', default="5000"))
     KUBE_CONFIG_DEFAULT_LOCATION: str = os.environ.get('KUBE_CONFIG_DEFAULT_LOCATION', '~/.kube/config')
     KUBE_CONFIG_DEFAULT_CONTEXT: str = os.environ.get('KUBE_CONFIG_DEFAULT_CONTEXT', 'minikube')
+    OWNER: str = os.environ.get('OWNER', 'support@sidi.ai')
 
 settings = Settings()

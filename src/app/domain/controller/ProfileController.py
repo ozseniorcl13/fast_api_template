@@ -7,7 +7,8 @@ from app.domain.dto.ProfileCreateDTO import ProfileCreateDTO
 from app.domain.dto.ProfileResponseDTO import ProfileResponseDTO
 from app.domain.model.Profile import Profile
 from app.domain.services.ProfileService import profileService
-from pydantic.fields import ModelField
+from app.config.Settings import settings
+from app.domain.model.Status import Status
 
 router = APIRouter(prefix='/profile')
 controller = Controller(router,openapi_tag={'name':'Profile'})
@@ -15,9 +16,6 @@ controller = Controller(router,openapi_tag={'name':'Profile'})
 @controller.use()
 @controller.resource()
 class ProfileController:
-
-    def __init__(self) -> None:
-        pass
 
     @router.get("/", 
                 tags=["Profile"], 
@@ -29,9 +27,18 @@ class ProfileController:
     @router.post("/", tags=["Profile"], 
                  status_code=status.HTTP_201_CREATED, 
                  summary='Create profile in the Kubeflow', 
-                 response_model=ProfileResponseDTO)
-    async def create(profile: ProfileCreateDTO):
-       return ProfileResponseDTO(name=profile.name, detail='Created profile')
+                 response_model=Profile)
+    async def create(profileCreate: ProfileCreateDTO):
+       profile = Profile(
+           name=profileCreate.name,
+           createdBy=profileCreate.createdBy,
+           description=profileCreate.description,
+           onwer=settings.OWNER,
+           projectManager=profileCreate.projectManager,
+           status=Status.active
+       )
+            
+       return profileService.create(profile)
         
     @router.get("/{id}", tags=["Profile"],
                 status_code=status.HTTP_200_OK, 
