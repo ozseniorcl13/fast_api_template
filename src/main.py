@@ -8,7 +8,7 @@ from app.infrastructure.services.K8sClient import client
 api = FastAPI(
     title="Application FastAPI",
     version="0.1.0",
-    openapi_tags=ControllersTags    
+    openapi_tags=ControllersTags
 )
 
 # Load K8sClient
@@ -22,4 +22,4 @@ for controller in controllerLoader():
     api.include_router(controller.router)
 
 if __name__ == "__main__":
-    uvicorn.run("main:api", host='0.0.0.0', port=settings.PORT, log_level="info")
+    uvicorn.run("main:api", host='0.0.0.0', port=settings.PORT)

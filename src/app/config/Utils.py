@@ -26,7 +26,4 @@ def moduleFromFile(moduleName, filePath):
     spec = util.spec_from_file_location(moduleName, filePath)
     module = util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module
-    
-
-    
+    return module  
