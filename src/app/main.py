@@ -17,12 +17,13 @@ client.connect(
     pathFile=settings.KUBE_CONFIG_DEFAULT_LOCATION
 )
 
-for route in load_routes():
-    api.include_router(route)
+
+# for route in load_routes():
+#    api.include_router(route)
 
 # Register routes by Controller
-# for controller in controllerLoader():
-#    api.include_router(controller.router)
+for controller in controllerLoader():
+    api.include_router(controller.router)
 
 if __name__ == "__main__":
     uvicorn.run("main:api", host='0.0.0.0', port=settings.PORT)
