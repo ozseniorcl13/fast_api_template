@@ -9,22 +9,23 @@ from fastapi import FastAPI
 import pytest
 from typing import Generator
 from typing import Any
-from config.Utils import load_routes
+# from config.Utils import load_routes
+from main import api
 
 
 
-def start_application():
-    app = FastAPI()
+# def start_application():
+#    app = FastAPI()
     # Register routes by Controller
-    for route in load_routes():
-        app.include_router(route)
-    return app
+#    for route in load_routes():
+#        app.include_router(route)
+#    return app
 
 
 @pytest.fixture(scope="function")
 def app() -> Generator[FastAPI, Any, None]:
-    _app = start_application()
-    yield _app
+#    _app = start_application()
+    yield api
 
 
 @pytest.fixture(scope="function")
