@@ -2,7 +2,7 @@ from typing import List
 from fastapi_router_controller import Controller
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from app.domain.dto.ResourceQuotaDTO import ResourceQuotaDTO
+from domain.dto.ResourceQuotaDTO import ResourceQuotaDTO
 
 router = APIRouter(prefix='/resourcequota')
 controller = Controller(router,openapi_tag={'name':'ResourceQuota'})

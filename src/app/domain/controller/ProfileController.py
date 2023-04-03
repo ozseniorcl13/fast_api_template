@@ -2,13 +2,13 @@ from typing import List, Optional
 from fastapi_router_controller import Controller
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from fastapi.responses import JSONResponse
-from app.domain.dto import ResourceQuotaDTO
-from app.domain.dto.ProfileCreateDTO import ProfileCreateDTO
-from app.domain.dto.ProfileResponseDTO import ProfileResponseDTO
-from app.domain.model.Profile import Profile
-from app.domain.services.ProfileService import profileService
-from app.config.Settings import settings
-from app.domain.model.Status import Status
+from domain.dto import ResourceQuotaDTO
+from domain.dto.ProfileCreateDTO import ProfileCreateDTO
+from domain.dto.ProfileResponseDTO import ProfileResponseDTO
+from domain.model.Profile import Profile
+from domain.services.ProfileService import profileService
+from config.Settings import settings
+from domain.model.Status import Status
 
 router = APIRouter(prefix='/profile')
 controller = Controller(router,openapi_tag={'name':'Profile'})

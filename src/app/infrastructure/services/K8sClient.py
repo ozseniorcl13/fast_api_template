@@ -1,7 +1,7 @@
 import os
 from kubernetes import client, config
-from app.config.Settings import settings
-from app.core.logger import logger
+from config.Settings import settings
+from core.logger import logger
 
 class K8sClient:
 

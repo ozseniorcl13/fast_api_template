@@ -1,10 +1,10 @@
 
 from typing import List
-from app.domain.model.Profile import Profile
-from app.domain.model.Status import Status
+from domain.model.Profile import Profile
+from domain.model.Status import Status
 from kubernetes import client
 from kubernetes.client import exceptions
-from app.core.logger import logger
+from core.logger import logger
 
 class ProfileService():
 

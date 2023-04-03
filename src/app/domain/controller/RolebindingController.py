@@ -1,7 +1,7 @@
 from fastapi_router_controller import Controller
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from app.domain.dto.RolebindingDTO import RolebindingDTO
+from domain.dto.RolebindingDTO import RolebindingDTO
 
 router = APIRouter(prefix='/rolebinding')
 controller = Controller(router,openapi_tag={'name':'Rolebinding'})

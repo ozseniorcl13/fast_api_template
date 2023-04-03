@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.domain.model.Status import Status
+from domain.model.Status import Status
 
 class Profile(BaseModel):
     name: str

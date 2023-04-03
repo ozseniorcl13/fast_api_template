@@ -1,5 +1,23 @@
 import os
 import importlib.util as util
+
+from fastapi import APIRouter
+
+from domain.controller.AuthorizationPolicyController import controller as AuthorizationPolicyController
+from domain.controller.ProfileController import controller as ProfileController
+from domain.controller.ResourceQuotaController import controller as ResourceQuotaController
+from domain.controller.RolebindingController import controller as RolebindingController
+
+
+
+def load_routes() -> list[APIRouter]:
+    routes = []
+    routes.append(AuthorizationPolicyController.router)
+    routes.append(ProfileController.router)
+    routes.append(ResourceQuotaController.router)
+    routes.append(RolebindingController.router)
+    
+    return routes
  
 def controllerLoader():
     
@@ -7,7 +25,7 @@ def controllerLoader():
     rootDir = os.path.abspath(os.curdir)
 
     # Root dir controllers
-    controllerDir = os.path.join(rootDir, 'src', 'app','domain','controller')
+    controllerDir = os.path.join(rootDir, 'src', 'app', 'domain','controller')
 
     controllers = []
     for module in os.listdir(controllerDir):

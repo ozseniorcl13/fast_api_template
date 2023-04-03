@@ -1,7 +1,7 @@
 from fastapi_router_controller import Controller
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from app.domain.dto.AuthorizationPolicyDTO import AuthorizationPolicyDTO
+from domain.dto.AuthorizationPolicyDTO import AuthorizationPolicyDTO
 
 router = APIRouter(prefix='/authorizationpolicy')
 controller = Controller(router,openapi_tag={'name':'AuthorizationPolicy'})
